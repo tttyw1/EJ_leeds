@@ -1,0 +1,116 @@
+#viewDiv {
+    width: 100%; /* 占满屏幕宽度 */
+    height: calc(100vh - 70px); /* 高度占满剩余的可视区域，减去顶部导航的高度 */
+    margin: 0; /* 清除默认的外边距 */
+    padding: 0; /* 清除默认的内边距 */
+    box-sizing: border-box;
+}
+.custom-menu-style {
+    padding: 15px; /* 根据需要调整内边距 */
+    box-sizing: border-box; /* 确保 padding 不会影响到元素的总宽度和高度 */
+}
+p {
+    margin-left: 15px; 
+    margin-bottom: 0px;
+    margin-top: 0;/* 移除上下外边距 */
+    padding:10px;
+    font-weight: bold; /* 移除上下内边距（如果需要的话） */
+}
+
+#logo-holder {
+    display: flex;
+    align-items: center; /* 垂直居中对齐 */
+  }
+#logo-holder img {
+    margin-left: 20px; /* 左侧间距 */
+    margin-right: 20px; /* 右侧间距 */
+    width: 50px;
+}
+h1{
+    font-size: 24px;
+}
+h2{
+    font-size: 14px;
+    font-style: normal;
+}
+#information{
+    width: 300px; /* 设置你需要的宽度 */
+    padding:15px;
+    max-height: 300px; /* 设置最大高度，例如300px */
+    overflow-y: auto;
+}
+#variable-selector {
+    width: 300px; /* 设置你需要的宽度 */
+    margin-left: 15px;
+}
+.attributes{
+    display: none; 
+
+}
+
+.custom-menu-style {
+    width: 300px; /* Adjust the width as needed */
+    padding-left: 40px;
+}
+#environmental-justice-attributes{
+    max-height: 100px; /* 设置最大高度，可以根据需要调整 */
+    overflow-y: auto;  /* 启用垂直滚动条 */
+    /*border: 1px solid #ddd;  可选：添加边框，以更清楚地显示滚动区域 */
+    padding: 10px;
+}
+#air-pollution-attributes {
+   
+    max-height: 100px; /* 设置最大高度，可以根据需要调整 */
+    overflow-y: auto;  /* 启用垂直滚动条 */
+    /*border: 1px solid #ddd;  可选：添加边框，以更清楚地显示滚动区域 */
+    padding: 10px; /* 可选：为内部元素添加一些内边距 */
+}
+#socio-demographic-attributes {
+    display: none;
+    max-height: 100px; /* 设置最大高度，可以根据需要调整 */
+    overflow-y: auto;  /* 启用垂直滚动条 */
+    /*border: 1px solid #ddd;  可选：添加边框，以更清楚地显示滚动区域 */
+    padding: 10px; /* 可选：为内部元素添加一些内边距 */
+}
+#socio-demographic-attributes{
+    display: none;
+    max-height: 100px; /* 设置最大高度，可以根据需要调整 */
+    overflow-y: auto;  /* 启用垂直滚动条 */
+    /*border: 1px solid #ddd;  可选：添加边框，以更清楚地显示滚动区域 */
+    padding: 10px; 
+}
+.variable-list {
+    max-height: 100px; /* 设置最大高度，可以根据需要调整 */
+    overflow-y: auto;  /* 启用垂直滚动条 */
+    /*border: 1px solid #ddd;  可选：添加边框，以更清楚地显示滚动区域 */
+    padding: 10px; 
+}
+/* 基本按钮样式 */
+.toggle-btn {
+    background-color: white; /* 默认背景色为白色 */
+    border: 1px solid gray;  /* 默认边框颜色为灰色 */
+    border-radius: 4px;      /* 可选：圆角边框 */
+    padding: 5px 10px;      /* 可选：按钮内边距 */
+    cursor: pointer;   /* 鼠标悬停时显示手型光标 */
+    margin: 5px 0; 
+    margin-left: 15px;  
+    width: 200px;    
+    transition: background-color 0.3s ease, border-color 0.3s ease; /* 平滑过渡效果 */
+}
+
+/* 选中状态样式 */
+.toggle-btn :focus {
+    background-color: rgb(78, 148, 171); /* 选中时背景色为浅蓝色 */
+    border-color: lightblue;     /* 可选：边框颜色可以和背景色一致 */
+}
+
+/* 鼠标悬停效果（可选） */
+.toggle-btn:hover {
+    background-color: #f0f0f0; /* 鼠标悬停时背景色变为浅灰色 */
+}
+
+/* 鼠标点击效果（可选） */
+.toggle-btn:active {
+    background-color: #e0e0e0; /* 鼠标点击时背景色变为稍暗的灰色 */
+}
+

@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bivariate Choropleth Map with ArcGIS API for JavaScript</title>
+   
+    
+      <!-- Load Map Components from CDN-->
+  <link rel="stylesheet" href="https://js.arcgis.com/4.30/esri/themes/light/main.css">
+  <script src="https://js.arcgis.com/4.30/"></script>
+  <script type="module" src="https://js.arcgis.com/map-components/4.30/arcgis-map-components.esm.js"></script>
+  <script language="javascript" type="text/javascript" src="bivariate map copy 2.js"></script>
+  <link rel="stylesheet" href="style.css">
+    
+</head>
+<body>
+    <div id="top-nav">
+        <div class="nav-element" id="logo-holder">
+          <img src="cloud1.png" >
+          <h1 class="title">Leeds Air Quality & Justice</h1>
+        </div>
+      </div>
+    <div id="viewDiv"></div>
+
+    <div id="variable-selector" class="variable-selector">
+        <p>Explore Variable Distributions</p>
+        <div class="category">
+            <button class="toggle-btn" data-category="air-pollution">Air Pollution Variables</button>
+            <div class="attributes" id="air-pollution-attributes">
+                <label><input type="radio" name="variable" value="data_pm10"> PM10</label><br>
+                <label><input type="radio" name="variable" value="data_pm25"> PM2.5</label><br>
+                <label><input type="radio" name="variable" value="data_so2"> SO2</label><br>
+                <label><input type="radio" name="variable" value="data_nox"> NOx</label><br>
+                <label><input type="radio" name="variable" value="data_ben"> Benzene</label><br>
+                <label><input type="radio" name="variable" value="data_no2"> NO2</label><br>
+                <!-- Add other air pollution attributes as needed -->
+            </div>
+        </div>
+        <div class="category">
+            <button class="toggle-btn" data-category="socio-demographic">Demographic Variables</button>
+            <div class="attributes" id="socio-demographic-attributes">
+                <label><input type="radio" name="variable" value="data_IMDDecile">Index of Multiple Deprivation Decile</label><br>
+                <label><input type="radio" name="variable" value="data_IncomeDecile">Income Deprivation Decile</label><br>
+                <label><input type="radio" name="variable" value="data_EducationDecile">Education Deprivation Decile</label><br>
+                <label><input type="radio" name="variable" value="data_HealthDecile">Health Deprivation Decile</label><br>
+                <label><input type="radio" name="variable" value="data_Asian">%Asian</label><br>
+                <label><input type="radio" name="variable" value="data_Black">%Black</label><br>
+                <label><input type="radio" name="variable" value="data_Mixed">%Mixed-Race Population</label><br>
+                <label><input type="radio" name="variable" value="data_White">%White</label><br>
+                <label><input type="radio" name="variable" value="data_Other_ethnic_group">%Other Ethnic Population</label><br>
+                <label><input type="radio" name="variable" value="data_color_of_people">%People of Color</label><br>
+                <label><input type="radio" name="variable" value="data_age_under15_">%Age Under 15</label><br>
+                <label><input type="radio" name="variable" value="data_age_upper65_">%Age Over 65</label><br>
+                
+                <!-- Add other socio-demographic attributes as needed -->
+            </div>
+        </div>
+        <div class="category">
+            <button class="toggle-btn" data-category="environmental-justice">Environmental Justice Index</button>
+            <div class="attributes" id="environmental-justice-attributes">
+                <label><input type="radio" name="variable" value="data_EJpm10">PM10</label><br>
+                <label><input type="radio" name="variable" value="data_EJpm25">PM2.5</label><br>
+                <label><input type="radio" name="variable" value="data_EJso2">SO2</label><br>
+                <label><input type="radio" name="variable" value="data_Ejnox">NOx</label><br>
+                <label><input type="radio" name="variable" value="data_Ejben">Benzene</label><br>
+                <label><input type="radio" name="variable" value="data_EJno2">NO2</label><br>
+                <!-- Add other environmental justice attributes as needed -->
+            </div>
+        </div>
+        <div class="category">
+            <p>Explore Two-Variable Distributions</p>
+            <button class="toggle-btn" data-category="bivariate-map">Bivariate Map</button>
+            <div class="attributes" id="bivariate-map-attributes">
+                <div style="margin-left: 15px;">Air Pollution Variables</div>
+                <div class="variable-list" id="variable1-list">
+                <label><input type="radio" name="variable1" value="data_pm10"> PM10</label><br>
+                <label><input type="radio" name="variable1" value="data_pm25"> PM2.5</label><br>
+                <label><input type="radio" name="variable1" value="data_so2"> SO2</label><br>
+                <label><input type="radio" name="variable1" value="data_nox"> NOx</label><br>
+                <label><input type="radio" name="variable1" value="data_ben"> Benzene</label><br>
+                <label><input type="radio" name="variable1" value="data_no2"> NO2</label><br>
+                </div>
+                <!-- Add other bivariate map attributes as needed -->
+                <div style="margin-left: 15px;">Demographic Variables</div>
+                <div class="variable-list" id="variable2-list">
+                <label><input type="radio" name="variable2" value="data_IMDDecile">Index of Multiple Deprivation Decile</label><br>
+                <label><input type="radio" name="variable2" value="data_IncomeDecile">Income Deprivation Decile</label><br>
+                <label><input type="radio" name="variable2" value="data_EducationDecile">Education Deprivation Decile</label><br>
+                <label><input type="radio" name="variable2" value="data_HealthDecile">Health Deprivation Decile</label><br>
+                <label><input type="radio" name="variable2" value="data_Asian">%Asian</label><br>
+                <label><input type="radio" name="variable2" value="data_Black">%Black</label><br>
+                <label><input type="radio" name="variable2" value="data_Mixed">%Mixed-Race Population</label><br>
+                <label><input type="radio" name="variable2" value="data_White">%White</label><br>
+                <label><input type="radio" name="variable2" value="data_Other_ethnic_group">%Other Ethnic Population</label><br>
+                <label><input type="radio" name="variable2" value="data_color_of_people">%People of Color</label><br>
+                <label><input type="radio" name="variable2" value="data_age_under15_">%Age Under 15</label><br>
+                <label><input type="radio" name="variable2" value="data_age_upper65_">%Age Over 65</label><br>
+                </div>
+                <!-- Add other bivariate map attributes as needed -->
+            </div>
+        </div>
+        
+    </div>
+    <div id="information-menu" style="display:none;">
+        <!-- Your information content goes here -->
+    </div>
+    <div id="information" class="information">
+        <h2>
+            The software visualizes the distribution of air pollution environments in Leeds in 2021, as well as environmental inequalities. 
+        </h2>
+        <h2>
+            The map Layer uses the 2021 Leeds Lower Layer Super Output Area (LSOA) level vector layer, with a total of 488 regions
+        </h2>
+        <h2>
+            The air pollution data in this study is sourced from the Department for Environment, Food & Rural Affairs (Defra) of the UK. Six common air pollutants were selected: PM10, PM2.5, SO2, NOx, NO2 and Benzene.
+        </h2>
+        <h2>
+            For demographic data and socioeconomic data, the Index of Multiple Deprivation (IMD) and income deprivation, education deprivation, health deprivation and disability were selected in this study.  The data used is from the 2011 LSOAs, with a total of 482 areas in Leeds. After integrating the 2011 data with the 2021 data, 15 areas were excluded from the map.
+        </h2>
+        <h2>
+            The study selects the percentage of children and elderly people and the population from different racial groups. These data comes from 2021 census data.
+        </h2>
+        <h2>EJindex is calculated as follows</h2>
+<h2>EJ index=Demographic Index × Normalized Environmental Indicator</h2>
+<h2>The demographic index is calculate by the IMD Decile and the percentage of people of color. 
+</h2>
+    </div>
+
+</body>
